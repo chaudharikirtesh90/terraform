@@ -3,11 +3,13 @@ resource "aws_alb" "test_alb" {
     internal = var.internal
     load_balancer_type = var.alb_type
     security_groups = var.security_groups
-    subnets = var.subnets
+
+    enable_deletion_protection = false
     
-    access_logs {
-        bucket  = var.access_logs_bucket
-        enabled = true
-    }
+  subnets = [
+    var.subnet_1,
+    var.subnet_2
+  ]
+
   
 }

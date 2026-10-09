@@ -36,6 +36,22 @@ output "tejas_kakade_subnet_cidr_block" {
   value = module.subnet.tejas_kakade_subnet_cidr_block
 }
 
+output "tejas_kakade_subnet_availability_zone" {
+  value = module.subnet.tejas_kakade_subnet_availability_zone
+}
+
+
+output "subnet_id" {
+  value = module.subnet-1.subnet_id
+}
+
+output "subnet_cidr_block" {
+  value = module.subnet-1.subnet_cidr_block
+}
+
+output "availability_zone" {
+  value = module.subnet-1.availability_zone
+}
 output "security_group_id" {
   value = module.security_group.security_group_id
 }

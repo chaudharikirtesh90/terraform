@@ -12,11 +12,12 @@ variable "security_groups" {
   type =list(string)
 }
 
-variable "subnets" {
-    type = list(string)
+
+variable "subnet_1" {
+  type = string
 }
 
-variable "access_logs_bucket" {
+variable "subnet_2" {
   type = string
 }
 

@@ -29,10 +29,25 @@ module "vpc" {
   vpc_cidr_block = var.vpc_cidr_block
 }
 
+module "igw" {
+  source = "./modules/vpc/igw"
+  vpc_id = module.vpc.vpc_id
+  igw_name = var.igw_name
+
+}
+
 module "subnet" {
   source = "./modules/vpc/Subnet"
   vpc_id = module.vpc.vpc_id
   subnet_cidr_block = var.subnet_cidr_block
+  availability_zone = var.availability_zone
+}
+
+module "subnet-1" {
+  source = "./modules/vpc/subnet-1"
+  vpc_id = module.vpc.vpc_id
+  subnet_cidr_block_1 = var.subnet_cidr_block_1
+  availability_zone_1 = var.availability_zone_1
 }
 
 module "security_group" {
@@ -46,10 +61,11 @@ module "application_loadbalancer" {
   alb_name = var.alb_name
   alb_type = var.alb_type
   security_groups = [module.security_group.security_group_id]
-  subnets = [module.subnet.tejas_kakade_subnet_id]
-  access_logs_bucket = module.bucket.s3_new_bucket_practice
   internal = var.internal
+  subnet_1 = module.subnet.tejas_kakade_subnet_id
+  subnet_2 = module.subnet-1.subnet_id
 }
+
 
 
 
